@@ -73,31 +73,33 @@ export default function GoalTrackerApp(){
     ));
 
   return (<>
-  <div className="font-sans bg-gray-50 min-h-screen flex flex-col">
-  <nav className="flex justify-between items-center p-4 shadow bg-white/10 backdrop-blur-md text-white sticky top-0 z-10 rounded-b-lg">
-      <h1 className="text-xl font-bold text-purple-800">GoalTracker</h1>
-      <div className="space-x-4">
-        <button
-        onClick={()=> setCurrentPage('landing')}
-        className="text-gray-900 hover:text-purple-500 transition font-semibold">
-          Home
-        </button>
-        <button
-        onClick={()=> setCurrentPage("dashboard")}
-        className="text-slate-900 hover:text-purple-500 transition font-semibold">
-          Dashboard
-        </button>
-      </div>
-    </nav>
+  <div className="min-h-screen flex flex-col bg-gradient-to-r from-[#1e1b4b] via-[#4c1d95] to-[#7c3aed]">
+  <nav className="flex justify-between items-center px-6 py-4 bg-gradient-to-r from-purple-700 via-purple-800 to-purple-900 text-white shadow-lg sticky top-0 z-20 backdrop-blur-md">
+    <h1 className="text-2xl font-extrabold text-white tracking-wider">GoalTracker</h1>
+    <div className="flex space-x-6">
+      <button
+        onClick={() => setCurrentPage('landing')}
+        className="relative font-semibold px-3 py-1 hover:text-yellow-300 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-yellow-300 hover:after:w-full after:transition-all after:duration-300">
+        Home
+      </button>
 
-    <main className="flex-1 flex flex-col justify-center">
+      <button
+        onClick={() => setCurrentPage('dashboard')}
+        className="relative font-semibold px-3 py-1 hover:text-yellow-300 transition duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-yellow-300 hover:after:w-full after:transition-all after:duration-300">
+        Dashboard
+      </button>
+    </div>
+  </nav>
+
+
+    <main className="flex-1 mt-0">
       {currentPage === 'landing' && (
       <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
         <div className="absolute inset-0 bg-gradient-to-tr from-purple-800 to-pink-600 opacity-30"></div>
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8 text-center text-white">
             <h2 className="text-5xl sm:text-7xl font-semibold tracking-tight transform-gpu animate__animated animate__fadeInUp animate__delay-1s">Achieve Your Goals Faster</h2>
             <p className="mt-8 text-lg sm:text-xl font-medium opacity-75 animate__animated animate__fadeIn animate__delay-2s">Track, celebrate, and smash your milestones. Stay accountable with our tracker.</p>
-          <div className="mt-12 ">
+          <div className="mt-12  ">
 
             <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-5xl mx-auto">
 
@@ -180,7 +182,10 @@ export default function GoalTrackerApp(){
                     <ResponsiveContainer width="100%" height={100}>
                         <BarChart data={[{ name: goal.title, progress: goal.progress }]}>
                           <XAxis dataKey="name" hide />
-                          <Tooltip />
+                          <Tooltip 
+                              contentStyle={{ backgroundColor: '#1e1b4b', border: '1px solid #7c3aed', borderRadius: '8px', color: 'white', fontSize: '12px' }}
+                              itemStyle={{ color: '#c4b5fd' }}
+                              cursor={{ fill: 'rgba(124, 58, 237, 0.1)' }}/>
                           <Bar dataKey="progress" fill="#7C3AED" radius={[10, 10, 0, 0]} isAnimationActive />
                         </BarChart>
                       </ResponsiveContainer>
@@ -215,9 +220,13 @@ export default function GoalTrackerApp(){
       )}
     </main>
 
-    <footer className="bg-white shadow-md mt-auto p-4 text-center text-sm text-gray-500">
-      &copy; {new Date().getFullYear()} GoalTracker. All rights reserved.
+    <footer className="bg-gradient-to-r from-[#1e1b4b] via-[#4c1d95] to-[#7c3aed] text-white text-center py-6 shadow-inner">
+
+      <p className="text-sm opacity-80">
+        &copy; 2025 GoalTracker. Designed & developed by <span className="font-bold text-purple-300">Ayush Kumar Pandey</span>.
+      </p>
     </footer>
+
   </div>
   </>)
 }
